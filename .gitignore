@@ -1,0 +1,17 @@
+# Environnement Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Données réelles du tribunal : ne jamais les publier
+donnees/
+*.xlsx
+*.xls
+*.csv
+!donnees_exemple/*.xlsx
+
+# Notebooks d'origine
+*.ipynb
+.ipynb_checkpoints/
