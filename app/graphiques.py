@@ -3,12 +3,19 @@
 import arabic_reshaper
 import matplotlib.pyplot as plt
 from bidi.algorithm import get_display
+from matplotlib import ft2font
 
 plt.rcParams["axes.unicode_minus"] = False
+
+# Les versions récentes de Matplotlib (compilées avec libraqm) lient les lettres arabes
+# et gèrent le sens de lecture elles-mêmes : il ne faut alors pas retraiter le texte.
+MISE_EN_FORME_NATIVE = hasattr(ft2font, "__libraqm_version__")
 
 
 def ar(texte):
     """Met en forme un texte arabe pour matplotlib (liaison des lettres et sens de lecture)."""
+    if MISE_EN_FORME_NATIVE:
+        return str(texte)
     return get_display(arabic_reshaper.reshape(str(texte)))
 
 
